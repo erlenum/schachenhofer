@@ -1,126 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-
-body {
-  background-color: black;
-  margin: 0;
-  font-family: Impact;
-  font-size: 17px;
-}
-
-@-webkit-keyframes content {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
-  }
-
-  to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
-  }
-}
-
-#myVideo {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-}
-
-.content {
-  position: fixed;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  color: #f1f1f1;
-  width: 100%;
-  padding: 0px;
-  color: #fff;
-  margin-bottom: 0px;
-  text-align: center;
-  /*-webkit-animation: content 1s ease-in-out infinite alternate;
-  -moz-animation: content 1s ease-in-out infinite alternate;
-  animation: content 1s ease-in-out infinite alternate;*/
-}
-
-#myBtn {
-  width: 200px;
-  font-size: 18px;
-  padding: 10px;
-  border: none;
-  background: #000;
-  color: #fff;
-  cursor: pointer;
-}
-
-#myBtn:hover {
-  background: #ddd;
-  color: black;
-}
-
-#myProgress {
-  width: 100%;
-  background-color: #ddd;
-}
-
-#myBar {
-  width: 1%;
-  height: 30px;
-  background-color: #E89F89;
-}
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <script src="countdown.js"></script>
+    <script src="game.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 </head>
-<body>
+ 
+<body onload="startGame()">
 
-<video autoplay muted loop id="myVideo">
-  <source src="bg-video4.mp4" type="video/mp4">
-  Your browser does not support HTML5 video.
-</video>
+<header class="center">
+    <div style="float: left">
+        <button onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()">UP</button><br><br>
+        <button onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">DOWN</button>
+    </div>
+    <h1>Schachenhofer WG Party #11 presents:</h1>
+    <p id="demo" style="float: right"></p>
+    <h2>SUPERGAU</h2>
+    </header>
 
-<div class="content">
-  <h1>Schachenhofer WG Party #11 presents: SUPERGAU</h1>
-  <p>Website under construction - GAU progressing</p>
-  <button id="myBtn" onclick="myFunction()">Pause</button>
-</div>
+    <audio autoplay loop controls>
+  <source src="src/dystovator.ogg" type="audio/ogg">
+  <source src="src/dystovator.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+    
+<table>
+  <tr id="nav-two" class="nav">
+    <th>
+    <a href="#">THE ONE AND ONLY D. DIDDY | LINZ</a>
+    <audio id="beep-two">
+        <source src="src/doom.mp3" controls></source>
+        Your browser isn't invited for super fun time.
+    </audio>
+    </th>
+<th><a href="#">FANIES FEINSTES | TYROL</a></th>
+<th ><a href="#">THE GERMAN PHYCICIST | FRANKFURT</a></th>
+<th ><a href="#">THE REAL TONY HAWK | GRAZ</a></th>
+<th ><a href="#">THE SCHACHENHOFER HIMSELF | WIEN</a></th>
+<th ><a href="#">BAVARIANS NEXT TOPMODEL AARON | ROSENHEIM</a></th>
+<th ><a href="#">DR. GREENTHUMB MARLIES | LINZ</a></th>
+  </tr>
+</table>
 
-<!--div class="content" id="myProgress">
-  <div id="myBar"></div>
-</div-->
-
-<br>
-<!--button class="content" onclick="move()">help to GAU it!</button-->
-
-<script>
-var video = document.getElementById("myVideo");
-var btn = document.getElementById("myBtn");
-
-function myFunction() {
-  if (video.paused) {
-    video.play();
-    btn.innerHTML = "Pause";
-  } else {
-    video.pause();
-    btn.innerHTML = "Play";
-  }
-}
-</script>
-
-<script>
-/*function move() {
-  var elem = document.getElementById("myBar");
-  var width = 1;
-  var id = setInterval(frame, 10);
-  function frame() {
-    if (width >= 100) {
-      clearInterval(id);
-    } else {
-      width++;
-      elem.style.width = width + '%';
+		<script>$("#nav-two a")
+  .each(function(i) {
+    if (i != 0) { 
+      $("#beep-two")
+        .clone()
+        .attr("id", "beep-two" + i)
+        .appendTo($(this).parent()); 
     }
-  }
-}*/
-</script>
+    $(this).data("beeper", i);
+  })
+  .mouseenter(function() {
+    $("#beep-two" + $(this).data("beeper"))[0].play();
+  });
+$("#beep-two").attr("id", "beep-two0");</script>
 
 </body>
 </html>
